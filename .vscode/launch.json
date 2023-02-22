@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Launch Chrome",
             // "url": "http://localhost:8080/index.html",
-            "url": "file:///C:/Users/zeorro/Desktop/projectd/bin/index.html",
+            "url": "file:///D:/GitHub/projectd/bin/index.html",
             "webRoot": "${workspaceFolder}"
         },
         {

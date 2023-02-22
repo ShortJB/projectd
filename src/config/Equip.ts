@@ -1,41 +1,33 @@
-namespace config {
+/// <reference path="./ConfigMgr.ts" />
+namespace game {
     export class Equip {
         static _equip: Equip;
         static _config: any;
-        static _configVO: any[];
 
-        get configVO() {
-            return Equip._configVO;
-        }
-
-        static getConfig(id?:number, lv?:number): Equip {
+        static getConfig(id?: number, lv?: number): Equip {
             if (!Equip._equip) {
                 Equip._equip = new Equip();
-                //读取配置表
-                Equip._config = {
-                    0: [1, 2, "333333333333333"],
-                    1: [1, 2, "333333333333333"],
-                    2: [1, 2, "333333333333333"],
-                    3: [1, 2, "333333333333333"],
-                    4: [1, 2, "333333333333333"],
-                    5: [1, 2, "333333333333333"],
-                }
 
+                Equip._config = ConfigMgr.getCfgs('T_Equip.bin');
             }
-            Equip._configVO = Equip._config[id];
-            return Equip._equip;
+            // Equip._configVO = Equip._config[id];
+            // return Equip._equip;
+
+            let config = Equip._config[id];
+            config.__proto__ = Equip.prototype;
+            return config;
         }
 
         get level(): number {
-            return Equip._config[EquipEnum.level];
+            return this[0];
+        }
+        get id(): number {
+            return this[1];
+        }
+        get desc(): string {
+            return this[2];
         }
     }
 
 
-}
-
-const enum EquipEnum {
-    level,
-    id,
-    desc,
 }
